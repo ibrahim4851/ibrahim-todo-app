@@ -1,4 +1,4 @@
-package com.felece.todoapp;
+package com.felece.todoapp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
