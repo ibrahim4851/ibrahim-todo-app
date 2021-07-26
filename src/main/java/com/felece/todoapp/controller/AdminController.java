@@ -4,6 +4,7 @@ package com.felece.todoapp.controller;
 import com.felece.todoapp.dto.UserDto;
 import com.felece.todoapp.entity.User;
 import com.felece.todoapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +14,13 @@ import java.util.List;
 @RestController
 public class AdminController {
 
+    @Autowired
     private UserService userService;
 
     @GetMapping("/admin/users")
-    public void findUsers(Model model){
+    public List<User> findUsers(){
         List<User> users = userService.findAll();
-        model.addAttribute("users", users);
+        return users;
     }
 
     @PostMapping("/admin/users/adduser")
@@ -29,7 +31,7 @@ public class AdminController {
 
     @PutMapping("/admin/updateuser/{userid}")
     @ResponseBody
-    public void updateUser(@PathVariable("userid")Long id){
+    public void updateUser(@PathVariable(value = "userid")Long id){
         userService.updateUser(id);
     }
 

@@ -1,14 +1,19 @@
 package com.felece.todoapp.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
+@Table(name = "todos")
 public class Todo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String desc;
+
     private String userId;
+
     private String status;
 
     public Long getId() {
