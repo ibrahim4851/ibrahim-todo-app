@@ -1,10 +1,9 @@
 package com.felece.todoapp.controller;
 
 
-
 import com.felece.todoapp.dto.UserDto;
 import com.felece.todoapp.entity.User;
-import com.felece.todoapp.service.CustomUserDetailsService;
+import com.felece.todoapp.service.UserService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +13,7 @@ import java.util.List;
 @RestController
 public class AdminController {
 
-
-
-    private CustomUserDetailsService userService;
+    private UserService userService;
 
     @GetMapping("/admin/users")
     public void findUsers(Model model){

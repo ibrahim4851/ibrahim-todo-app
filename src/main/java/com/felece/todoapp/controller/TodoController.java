@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TodoController {
 
-
     @Autowired
     private TodosService todosService;
-
 
     /*
     @PostMapping("/todos")
