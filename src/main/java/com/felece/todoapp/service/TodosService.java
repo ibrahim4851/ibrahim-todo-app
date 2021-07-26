@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TodosService {
@@ -15,21 +14,22 @@ public class TodosService {
     @Autowired
     TodoRepository todoRepository;
 
-    public Optional<Todo> findByUserId(Long id){
-        return todoRepository.findById(id);
+    public List<Todo> findByUserId(Long id){
+        return todoRepository.findByUserId(id);
     }
 
     public Todo addTodo(TodoDto dto){
         Todo todo = new Todo();
-        todo.setDesc(dto.getDesc());
+        todo.setDescription(dto.getDescription());
         todo.setUserId(dto.getUserId());
-        todo.setStatus(dto.getStatus());
+        todo.setTodoStatus(dto.getTodoStatus());
+        todo = todoRepository.save(todo);
         return todo;
     }
 
     public Todo update(Long id, String status) {
         Todo todo = todoRepository.findById(id).get();
-        todo.setStatus(status);
+        todo.setTodoStatus(status);
         return todoRepository.save(todo);
     }
 

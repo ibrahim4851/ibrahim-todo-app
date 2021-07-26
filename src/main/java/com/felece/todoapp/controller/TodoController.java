@@ -5,7 +5,10 @@ import com.felece.todoapp.dto.TodoDto;
 import com.felece.todoapp.entity.Todo;
 import com.felece.todoapp.service.TodosService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class TodoController {
@@ -13,13 +16,13 @@ public class TodoController {
     @Autowired
     private TodosService todosService;
 
-    /*
-    @PostMapping("/todos")
-    @ResponseBody
-    public List<Tod o> getTodo(Model model){
-        List<Tod o> todos = todosService.findByUserId(id)
+
+    @GetMapping("/user/todos/{userid}")
+    public List<Todo> getUserTodo(@PathVariable("userid")Long id){
+        List<Todo> todos = todosService.findByUserId(id);
+        return todos;
     }
-     */
+
 
     @PostMapping("/admin/todos/addtodo")
     public Todo addTodoAdmin(@RequestBody TodoDto dto){
@@ -33,16 +36,16 @@ public class TodoController {
         return todo;
     }
 
-    @PutMapping("/admin/todos/{todo-id}")
+    @PutMapping("/admin/todos/{todoid}&{status}")
     @ResponseBody
-    public void updateAdminTodo(@PathVariable("todo-id") Long id, String status){
-        todosService.update(id, status);
+    public Todo updateAdminTodo(@PathVariable("todoid") Long id, @PathVariable("status") String status){
+        return todosService.update(id, status);
     }
 
-    @PutMapping("/user/todos/{todo-id}")
+    @PutMapping("/user/todos/{todoid}&{status}")
     @ResponseBody
-    public void updateUserTodo(@PathVariable("todo-id") Long id, String status){
-        todosService.update(id, status);
+    public Todo updateUserTodo(@PathVariable("todoid") Long id, @PathVariable("status") String status){
+        return todosService.update(id, status);
     }
 
     @DeleteMapping("/user/deletetodo/{todoid}")

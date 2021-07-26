@@ -31,8 +31,8 @@ public class AdminController {
 
     @PutMapping("/admin/updateuser/{userid}")
     @ResponseBody
-    public void updateUser(@PathVariable(value = "userid")Long id){
-        userService.updateUser(id);
+    public User updateUser(@PathVariable(value = "userid")Long id){
+        return userService.updateUser(id);
     }
 
 

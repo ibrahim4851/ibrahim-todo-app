@@ -2,16 +2,16 @@ package com.felece.todoapp.dto;
 
 public class TodoDto {
 
-    private String desc;
+    private String description;
     private String userId;
-    private String status;
+    private String todoStatus;
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUserId() {
@@ -22,11 +22,11 @@ public class TodoDto {
         this.userId = userId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getTodoStatus() {
+        return todoStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setTodoStatus(String todoStatus) {
+        this.todoStatus = todoStatus;
     }
 }

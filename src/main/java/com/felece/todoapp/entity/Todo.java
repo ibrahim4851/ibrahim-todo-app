@@ -10,11 +10,11 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String desc;
+    private String description;
 
     private String userId;
 
-    private String status;
+    private String todoStatus;
 
     public Long getId() {
         return id;
@@ -24,12 +24,12 @@ public class Todo {
         this.id = id;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String desc) {
+        this.description = desc;
     }
 
     public String getUserId() {
@@ -40,12 +40,21 @@ public class Todo {
         this.userId = userId;
     }
 
-    public String getStatus() {
-        return status;
+    public String getTodoStatus() {
+        return todoStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setTodoStatus(String status) {
+        this.todoStatus = status;
     }
 
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "id=" + id +
+                ", desc='" + description + '\'' +
+                ", userId='" + userId + '\'' +
+                ", status='" + todoStatus + '\'' +
+                '}';
+    }
 }
