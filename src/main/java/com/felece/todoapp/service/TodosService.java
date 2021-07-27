@@ -6,6 +6,12 @@ import com.felece.todoapp.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +29,12 @@ public class TodosService {
         todo.setDescription(dto.getDescription());
         todo.setUserId(dto.getUserId());
         todo.setTodoStatus(dto.getTodoStatus());
+        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate now = LocalDate.now();
+        ZoneId systemTimeZone = ZoneId.systemDefault();
+        ZonedDateTime zonedDateTime = now.atStartOfDay(systemTimeZone);
+        Date formatted = Date.from(zonedDateTime.toInstant());
+        todo.setCreatedAt(formatted);
         todo = todoRepository.save(todo);
         return todo;
     }

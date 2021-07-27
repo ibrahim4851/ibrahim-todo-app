@@ -1,10 +1,13 @@
 package com.felece.todoapp.dto;
 
+import java.util.Date;
+
 public class TodoDto {
 
     private String description;
     private String userId;
     private String todoStatus;
+    private Date createdAt;
 
     public String getDescription() {
         return description;
@@ -28,5 +31,13 @@ public class TodoDto {
 
     public void setTodoStatus(String todoStatus) {
         this.todoStatus = todoStatus;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

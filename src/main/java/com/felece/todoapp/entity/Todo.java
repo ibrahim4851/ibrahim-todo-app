@@ -1,6 +1,7 @@
 package com.felece.todoapp.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "todos")
@@ -15,6 +16,8 @@ public class Todo {
     private String userId;
 
     private String todoStatus;
+
+    private Date createdAt;
 
     public Long getId() {
         return id;
@@ -48,13 +51,22 @@ public class Todo {
         this.todoStatus = status;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public String toString() {
         return "Todo{" +
                 "id=" + id +
-                ", desc='" + description + '\'' +
+                ", description='" + description + '\'' +
                 ", userId='" + userId + '\'' +
-                ", status='" + todoStatus + '\'' +
+                ", todoStatus='" + todoStatus + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
