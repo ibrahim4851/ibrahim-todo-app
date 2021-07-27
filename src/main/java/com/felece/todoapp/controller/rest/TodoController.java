@@ -1,4 +1,4 @@
-package com.felece.todoapp.controller;
+package com.felece.todoapp.controller.rest;
 
 
 import com.felece.todoapp.dto.TodoDto;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class TodoController {
 
     @Autowired
