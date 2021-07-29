@@ -31,7 +31,7 @@ public class MVCConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         //eğer bir resource isteği gelirse kontrol edilmesi gereken yerlerin konfigurasyonu
-        //registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
-        //registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
     }
 }

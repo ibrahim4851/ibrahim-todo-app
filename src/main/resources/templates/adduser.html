@@ -9,25 +9,54 @@
           crossorigin="anonymous">
 </head>
 <body>
-<form th:action="@{/admin/adduser}" th:object="${user}" method="POST">
+<form style="margin-top: 30px" id="adduser">
     <table>
         <tr>
             <td>Username</td>
-            <td><input type="text" name="username"/></td>
+            <td><input type="text" id="username" name="username"/></td>
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="text" name="password"/></td>
+            <td><input type="text" id="password" name="password"/></td>
         </tr>
         <tr>
             <td>Role</td>
-            <td><select name="role">
-                <option th:each="role :${roleslist}"
-                        th:text="${role}">
+            <td><select name="role" id="role">
+                <option value="user" id="user">USER</option>
+                <option value="admin" id="admin">ADMIN</option>
             </select></td>
         </tr>
     </table>
     <input type="submit" value="Save"/>
+
+    <div class="container">
+        <div class="row">
+            <h1>Users</h1>
+
+            <table class="table" id="users">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.role}"></td>
+                    <td th:text="${user.password}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </form>
 </body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/admin.js"></script>
 </html>
