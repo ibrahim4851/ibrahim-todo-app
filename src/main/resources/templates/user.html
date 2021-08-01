@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <title>User Home Page</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -10,53 +10,62 @@
 </head>
 <body>
 
-<h1>Employee Form</h1>
-<br>
-<form th:action="@{/user/addtodo}" th:object="${todo}" method="POST">
+<form style="margin-top: 15px" id="addtodo">
+    <h1>Add a Todo</h1>
     <table>
         <tr>
             <td>Description</td>
-            <td><input type="text" name="description"/></td>
+            <td><input type="text" id="description" name="description"/></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td><input type="date" id="date" name="date"></td>
         </tr>
         <tr>
             <td>Status</td>
-            <td><select name="status">
-                <option th:each="status :${statuslist}"
-                        th:text="${status}">
+            <td><select name="todoStatus" id="todoStatus">
+                <option value="todo" id="todo">TODO</option>
+                <option value="done" id="done">DONE</option>
+                <option value="delay" id="delay">DELAY</option>
             </select></td>
         </tr>
     </table>
     <input type="submit" value="Save"/>
-</form>
 
-<div class="container">
-    <div class="row">
 
-        <h1>Users</h1>
+    <div class="container">
+        <div class="row">
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Index</th>
-                <th>Description</th>
-                <th>UserId</th>
-                <th>Status</th>
-                <th>Created At</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="todo : ${todos}">
-                <td th:text="${todoStat.index}"></td>
-                <td th:text="${todo.description}"></td>
-                <td th:text="${todo.userId}"></td>
-                <td th:text="${todo.todoStatus}"></td>
-                <td th:text="${todo.createdAt}"></td>
-            </tr>
-            </tbody>
-        </table>
+            <h1>Todos</h1>
+
+            <table class="table" id="todos">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="todo : ${todos}">
+                    <td th:text="${todo.id}"></td>
+                    <td th:text="${todo.description}"></td>
+                    <td th:text="${todo.todoStatus}"></td>
+                    <td th:text="${todo.date}"></td>
+                    <td>
+                        <a class="btn btn-danger" type="button" id="deletetodo">Delete</a>
+                        <button class="btn btn-success" type="button" id="edittodo">Edit</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-
-</div>
-
+</form>
 </body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>
 </html>

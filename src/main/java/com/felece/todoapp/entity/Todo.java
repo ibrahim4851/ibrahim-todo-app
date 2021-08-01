@@ -17,7 +17,7 @@ public class Todo {
 
     private String todoStatus;
 
-    private Date createdAt;
+    private Date date;
 
     public Long getId() {
         return id;
@@ -51,12 +51,12 @@ public class Todo {
         this.todoStatus = status;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setDate(Date createdAt) {
+        this.date = createdAt;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Todo {
                 ", description='" + description + '\'' +
                 ", userId='" + userId + '\'' +
                 ", todoStatus='" + todoStatus + '\'' +
-                ", createdAt=" + createdAt +
+                ", date=" + date +
                 '}';
     }
 }

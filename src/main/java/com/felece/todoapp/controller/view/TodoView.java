@@ -29,14 +29,14 @@ public class TodoView {
     @GetMapping(path = "user/addtodo")
     private String getTodoForm(Model model) {
         model.addAttribute("statuslist", statuslist);
-        return "user";
+        return "login";
     }
 
     @PostMapping("user/addtodo")
     public String addTodoAdmin(@ModelAttribute("todoDto") TodoDto dto, Model model){
         Todo todo = todosService.addTodo(dto);
         model.addAttribute("todo", todo);
-        return "user";
+        return "login";
     }
 
 }

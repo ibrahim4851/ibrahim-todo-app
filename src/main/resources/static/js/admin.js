@@ -21,11 +21,24 @@ $(document).ready(function (){
                 success: function (data){
                     console.log(this.data);
                     $("#adduser")[0].reset();
-                    var value = '<td>' + data.id + '</td>' + '<td>' + data.username  + '</td> <td>' + data.role + '</td> <td>' + data.password + '</td>';
+                    var value = '<tr>' + '<td>' + data.id + '</td>' + '<td>' + data.username  + '</td> <td>' + data.role + '</td> <td>' + data.password + '</td>'
+                        + '<td>'+
+                            '<button class="btn btn-danger" type="button" id="deleteuser">Delete</button>'+
+                            '<button class="btn btn-success" type="button" id="edituser">Edit</button>'+
+                        '</td>' + '</tr>';
 
                     $('#users').append(value);
                 }
             });
 
+    });
+    $('#users').on('click', $('#deleteuser'), function (event){
+        event.preventDefault()
+        window.alert("deleteuser");
+    });
+
+    $('#users').on('click', $('#edituser'), function (event){
+        event.preventDefault()
+        window.alert("edituser");
     });
 });

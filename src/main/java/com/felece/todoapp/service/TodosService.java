@@ -6,11 +6,9 @@ import com.felece.todoapp.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +18,8 @@ public class TodosService {
     @Autowired
     TodoRepository todoRepository;
 
-    public List<Todo> findByUserId(Long id){
-        return todoRepository.findByUserId(id);
+    public List<Todo> findByUserId(String id){
+        return todoRepository.findTodosByUserId(id);
     }
 
     public Todo addTodo(TodoDto dto){
@@ -30,11 +28,11 @@ public class TodosService {
         todo.setUserId(dto.getUserId());
         todo.setTodoStatus(dto.getTodoStatus());
         //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate now = LocalDate.now();
-        ZoneId systemTimeZone = ZoneId.systemDefault();
-        ZonedDateTime zonedDateTime = now.atStartOfDay(systemTimeZone);
-        Date formatted = Date.from(zonedDateTime.toInstant());
-        todo.setCreatedAt(formatted);
+        //LocalDate now = LocalDate.now();
+        //ZoneId systemTimeZone = ZoneId.systemDefault();
+        //ZonedDateTime zonedDateTime = now.atStartOfDay(systemTimeZone);
+        //Date formatted = Date.from(zonedDateTime.toInstant());
+        todo.setDate(dto.getDate());
         todo = todoRepository.save(todo);
         return todo;
     }

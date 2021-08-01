@@ -7,7 +7,7 @@ public class TodoDto {
     private String description;
     private String userId;
     private String todoStatus;
-    private Date createdAt;
+    private Date date;
 
     public String getDescription() {
         return description;
@@ -33,11 +33,11 @@ public class TodoDto {
         this.todoStatus = todoStatus;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

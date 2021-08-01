@@ -34,7 +34,7 @@ public class AdminView {
     public String getUserTodo(/*@PathVariable("userid")Long id,*/ Model model) {
         List<Todo> todos = todosService.findAll();
         model.addAttribute("todos", todos);
-        return "user";
+        return "login";
     }
 
     private static List<String> rolesList;
