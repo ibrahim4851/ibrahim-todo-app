@@ -31,4 +31,10 @@ public class UserHomePageController {
         return todo;
     }
 
+    @DeleteMapping("/user/deletetodo/{todoid}")
+    @ResponseBody
+    public void deleteTodoUser(@PathVariable Long todoid){
+        todosService.deleteTodo(todoid);
+    }
+
 }

@@ -34,16 +34,17 @@ $(document).ready(function (){
     });
     $('#users').on('click', '#deleteuser' , function (event){
         event.preventDefault()
-        var currentRow = $(this).closest("tr");
-        var id = currentRow.id;
-        window.alert(id);
-        $.ajax("/admin/home/"+id,
+        var id = $(this).attr("data-code");
+        $.ajax("/admin/home/deleteuser/"+id.toString(),
             {
                 method: 'DELETE',
                 contentType: 'application/json',
-                success: function (data){
-                    $(this).remove();
-                    window.alert("kullanici silindi");
+                success: function (){
+                    $('.todos').each(function(){
+                        $(id).remove();
+                    });
+                    window.alert("User Deleted");
+                    location.reload();
                 }
             });
     });

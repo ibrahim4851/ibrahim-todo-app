@@ -38,12 +38,25 @@ $(document).ready(function (){
 
     $('#todos').on('click', '#deletetodo', function (event){
         event.preventDefault();
-        window.alert("deletetodo");
+        var id =$(this).attr("data-code");
+        $.ajax("/user/deletetodo/"+id.toString(),
+        {
+            method: 'DELETE',
+            contentType: 'application/json',
+            success: function (){
+                $('.todos').each(function(){
+                    $(id).remove();
+                });
+                window.alert("Todo Deleted");
+                location.reload();
+            }
+        });
     });
 
     $('#todos').on('click', '#edittodo', function (event){
         event.preventDefault();
-        window.alert("edittodo");
+        var id =$(this).attr("data-code");
+        window.alert(id);
     });
 
 });

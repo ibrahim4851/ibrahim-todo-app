@@ -50,8 +50,8 @@
                     <td th:text="${user.role}"></td>
                     <td th:text="${user.password}"></td>
                     <td>
-                        <a class="btn btn-danger" type="button" id="deleteuser">Delete</a>
-                        <button class="btn btn-success" type="button" id="edituser">Edit</button>
+                        <a class="btn btn-danger" type="button" data-th-data-code='${user.id}' id="deleteuser">Delete</a>
+                        <button class="btn btn-success" type="button" data-th-data-code='${user.id}' id="edituser">Edit</button>
                     </td>
                 </tr>
                 </tbody>
