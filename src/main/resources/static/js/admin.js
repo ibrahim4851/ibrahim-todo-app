@@ -32,12 +32,23 @@ $(document).ready(function (){
             });
 
     });
-    $('#users').on('click', $('#deleteuser'), function (event){
+    $('#users').on('click', '#deleteuser' , function (event){
         event.preventDefault()
-        window.alert("deleteuser");
+        var currentRow = $(this).closest("tr");
+        var id = currentRow.id;
+        window.alert(id);
+        $.ajax("/admin/home/"+id,
+            {
+                method: 'DELETE',
+                contentType: 'application/json',
+                success: function (data){
+                    $(this).remove();
+                    window.alert("kullanici silindi");
+                }
+            });
     });
 
-    $('#users').on('click', $('#edituser'), function (event){
+    $('#users').on('click', '#edituser', function (event){
         event.preventDefault()
         window.alert("edituser");
     });

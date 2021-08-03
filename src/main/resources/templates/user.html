@@ -56,7 +56,7 @@
                     <td th:text="${todo.date}"></td>
                     <td>
                         <a class="btn btn-danger" type="button" id="deletetodo">Delete</a>
-                        <button class="btn btn-success" type="button" id="edittodo">Edit</button>
+                        <button class="btn btn-success" data-th-data-code='${todo.id}' type="button" id="edittodo">Edit</button>
                     </td>
                 </tr>
                 </tbody>

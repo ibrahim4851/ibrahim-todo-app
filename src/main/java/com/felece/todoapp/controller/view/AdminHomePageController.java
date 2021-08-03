@@ -31,4 +31,9 @@ public class AdminHomePageController {
         return user;
     }
 
+    @DeleteMapping("/admin/home/{id}")
+    public void deleteUser(@PathVariable Long id){
+        userService.deleteUser(id);
+    }
+
 }
