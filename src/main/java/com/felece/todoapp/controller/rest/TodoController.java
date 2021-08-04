@@ -19,8 +19,14 @@ public class TodoController {
 
 
     @GetMapping("/user/todos/{userid}")
-    public List<Todo> getUserTodo(@PathVariable("userid")String id){
+    public List<Todo> getUserTodo(@PathVariable("userid")int id){
         List<Todo> todos = todosService.findByUserId(id);
+        return todos;
+    }
+
+    @GetMapping("/user/todos/bydate/{userid}")
+    public List<Todo> getUserTodoByDate(@PathVariable("userid")String id){
+        List<Todo> todos = todosService.findByDateAndUserId(id);
         return todos;
     }
 

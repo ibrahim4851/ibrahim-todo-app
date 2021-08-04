@@ -5,7 +5,6 @@ import java.util.Date;
 public class TodoDto {
 
     private String description;
-    private String userId;
     private String todoStatus;
     private Date date;
 
@@ -15,14 +14,6 @@ public class TodoDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getTodoStatus() {

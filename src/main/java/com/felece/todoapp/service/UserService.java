@@ -23,6 +23,7 @@ public class UserService {
         user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         user.setRole(dto.getRole());
+        user.setActive(true);
         user = userRepository.save(user);
         return user;
     }

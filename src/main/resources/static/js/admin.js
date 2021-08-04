@@ -6,6 +6,12 @@ $(document).ready(function (){
         userform["username"] = $("#username").val();
         userform["password"] = $("#password").val();
         userform["role"] = $('#role :selected').text();//getting the dropdown text
+        if (userform.role == "ADMIN"){
+            userform.role = "ROLE_ADMIN";
+        }
+        else{
+            userform.role = "ROLE_USER";
+        }
 
         var obj = {
             username: userform.username,

@@ -13,7 +13,7 @@ public class Todo {
 
     private String description;
 
-    private String userId;
+    private int userId;
 
     private String todoStatus;
 
@@ -35,11 +35,11 @@ public class Todo {
         this.description = desc;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
