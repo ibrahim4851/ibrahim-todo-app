@@ -33,7 +33,7 @@ public class AdminHomePageController {
     public String adminAllTodos(Model model) {
         List<Todo> todos = todosService.findAll();
         model.addAttribute("todos", todos);
-        return "admin";
+        return "alltodos";
     }
 
     @PostMapping("admin/home/adduser")

@@ -1,6 +1,5 @@
 package com.felece.todoapp.controller.view;
 
-import com.felece.todoapp.dto.TodoDto;
 import com.felece.todoapp.dto.UserDto;
 import com.felece.todoapp.entity.Todo;
 import com.felece.todoapp.entity.User;
@@ -27,7 +26,7 @@ public class AdminView {
     public String findUsersPage(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
-        return "admin";
+        return "alltodos";
     }
 
     @GetMapping("user/todos")

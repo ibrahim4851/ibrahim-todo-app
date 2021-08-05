@@ -13,7 +13,7 @@
     <div class="row">
         <h1>Todos</h1>
 
-        <table class="table">
+        <table class="table" id="alltodos">
             <thead>
             <tr>
                 <th>ID</th>
@@ -21,6 +21,7 @@
                 <th>Status</th>
                 <th>UserID</th>
                 <th>Date</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -30,6 +31,8 @@
                 <td th:text="${todo.todoStatus}"></td>
                 <td th:text="${todo.userId}"></td>
                 <td th:text="${todo.date}"></td>
+                <td><a class="btn btn-danger" type="button" data-th-data-code='${todo.id}'
+                       id="deletetodo">Delete</a></td>
             </tr>
             </tbody>
         </table>
@@ -37,4 +40,6 @@
 
 </div>
 </body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/alltodos.js"></script>
 </html>
