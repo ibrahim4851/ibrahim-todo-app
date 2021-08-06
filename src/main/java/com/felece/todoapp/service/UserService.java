@@ -32,9 +32,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User updateUser(Long id){
+    public User updateUser(Long id, UserDto dto){
         User user = userRepository.findById(id).get();
-        user.setRole("ADMIN");
+        user.setRole(dto.getRole());
+        user.setUsername(dto.getUsername());
+        user.setPassword(dto.getPassword());
         return userRepository.save(user);
     }
 

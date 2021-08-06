@@ -1,6 +1,7 @@
 package com.felece.todoapp.controller.rest;
 
 
+import com.felece.todoapp.dto.FilterTodoDto;
 import com.felece.todoapp.dto.TodoDto;
 import com.felece.todoapp.entity.Todo;
 import com.felece.todoapp.service.TodosService;
@@ -19,7 +20,7 @@ public class TodoController {
 
 
     @GetMapping("/user/todos/{userid}")
-    public List<Todo> getUserTodo(@PathVariable("userid")int id){
+    public List<Todo> getUserTodo(@PathVariable("userid")Long id){
         List<Todo> todos = todosService.findByUserId(id);
         return todos;
     }
@@ -27,6 +28,12 @@ public class TodoController {
     @GetMapping("/user/todos/bydate/{userid}")
     public List<Todo> getUserTodoByDate(@PathVariable("userid")String id){
         List<Todo> todos = todosService.findByDateAndUserId(id);
+        return todos;
+    }
+
+    @GetMapping("admin/todos/filter")
+    public List<Todo> filterTodos(@RequestBody FilterTodoDto dto){
+        List<Todo> todos = todosService.filterTodos(dto);
         return todos;
     }
 

@@ -13,7 +13,7 @@ public class MyUserDetails implements UserDetails {
 
     private String username;
     private String password;
-    private int id;
+    private Long id;
     private boolean active;
     private List<GrantedAuthority> authorities;
 
@@ -31,11 +31,11 @@ public class MyUserDetails implements UserDetails {
         this.authorities = authorities;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

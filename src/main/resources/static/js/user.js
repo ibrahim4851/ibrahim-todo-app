@@ -36,6 +36,12 @@ $(document).ready(function (){
             });
     });
 
+    $('#addtodo').on('click', '#filter', function (event){
+        window.alert("clicked");
+        $.ajax("")
+        $('#todos').remove();
+    });
+
     $('#todos').on('click', '#deletetodo', function (event){
         event.preventDefault();
         var id =$(this).attr("data-code");

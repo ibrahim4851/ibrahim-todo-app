@@ -1,5 +1,6 @@
 package com.felece.todoapp.service;
 
+import com.felece.todoapp.dto.FilterTodoDto;
 import com.felece.todoapp.dto.TodoDto;
 import com.felece.todoapp.entity.MyUserDetails;
 import com.felece.todoapp.entity.Todo;
@@ -9,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -17,7 +19,7 @@ public class TodosService {
     @Autowired
     TodoRepository todoRepository;
 
-    public List<Todo> findByUserId(int id){
+    public List<Todo> findByUserId(Long id){
         return todoRepository.findTodosByUserId(id);
     }
 
@@ -26,7 +28,7 @@ public class TodosService {
         //getting the user's ID
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MyUserDetails customUser = (MyUserDetails) authentication.getPrincipal();
-        int userId = customUser.getId();
+        Long userId = customUser.getId();
 
         Todo todo = new Todo();
         todo.setDescription(dto.getDescription());
@@ -52,5 +54,10 @@ public class TodosService {
     }
 
     public List<Todo> findByDateAndUserId(String id){return todoRepository.findTodosByUserIdOrderByDateAsc(id);}
+
+    public List<Todo> filterTodos(FilterTodoDto dto){
+        Date date1 = dto.getDate1();
+        Date date2 = dto.getDate2();
+        return todoRepository.findAllByDateBetween(date1, date2);}
 
 }

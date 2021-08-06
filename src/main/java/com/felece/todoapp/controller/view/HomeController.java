@@ -17,7 +17,7 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         MyUserDetails customUser = (MyUserDetails) authentication.getPrincipal();
         String userRole = customUser.getAuthorities().toString();
-        int userId = customUser.getId();
+        Long userId = customUser.getId();
         //String roleAdmin = "[ROLE_ADMIN]";
         System.out.println("user role : "+ userRole);
 

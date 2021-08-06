@@ -57,6 +57,34 @@ $(document).ready(function (){
 
     $('#users').on('click', '#edituser', function (event){
         event.preventDefault()
+        var id = $(this).attr("data-code");
+        var row = $(this).closest("tr")
+        var name = row.find("td");
+        //console.log(name);
+        var edituserform = {};
+        edituserform["username"] = $("#editusername").val();
+        edituserform["password"] = $("#editpassword").val();
+        edituserform["role"] = $('#editrole').val();
+
+        if (edituserform.attr("data-code") == id){
+            console.log("basarili")
+        }
+
+        var editobj = {
+            username: edituserform.username,
+            password: edituserform.password,
+            role: edituserform.role
+        }
+
+        /*$.ajax("/api/admin/updateuser/"+id,
+            {
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(editobj),
+                success: function (){
+                    location.reload()
+                }
+            })*/
         window.alert("edituser");
     });
 });

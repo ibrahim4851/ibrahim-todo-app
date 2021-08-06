@@ -18,7 +18,7 @@ public class UserHomePageController {
     TodosService todosService;
 
     @GetMapping("user/home/{userid}")
-    public String userHome(Model model, @PathVariable("userid")int id){
+    public String userHome(Model model, @PathVariable("userid")Long id){
         List<Todo> todos = todosService.findByUserId(id);
         model.addAttribute("todos", todos);
         return "user";

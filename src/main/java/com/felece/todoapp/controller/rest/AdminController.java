@@ -30,8 +30,8 @@ public class AdminController {
 
     @PutMapping("/admin/updateuser/{userid}")
     @ResponseBody
-    public User updateUser(@PathVariable(value = "userid")Long id){
-        return userService.updateUser(id);
+    public User updateUser(@PathVariable(value = "userid")Long id, @RequestBody UserDto dto){
+        return userService.updateUser(id, dto);
     }
 
 

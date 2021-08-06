@@ -13,7 +13,7 @@ public class Todo {
 
     private String description;
 
-    private int userId;
+    private Long userId;
 
     private String todoStatus;
 
@@ -35,11 +35,11 @@ public class Todo {
         this.description = desc;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 

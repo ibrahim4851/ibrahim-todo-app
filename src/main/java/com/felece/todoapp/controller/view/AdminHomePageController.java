@@ -36,6 +36,13 @@ public class AdminHomePageController {
         return "alltodos";
     }
 
+    @PutMapping("admin/home/edituser")
+    @ResponseBody
+    public User editUser(@RequestBody UserDto dto, Long id){
+        User user = userService.updateUser(id, dto);
+        return user;
+    }
+
     @PostMapping("admin/home/adduser")
     @ResponseBody
     public User addUser(@RequestBody UserDto dto){
