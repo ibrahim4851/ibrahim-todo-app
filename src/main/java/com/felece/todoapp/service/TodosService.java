@@ -1,5 +1,6 @@
 package com.felece.todoapp.service;
 
+import com.felece.todoapp.dto.FilterTodoByUserDto;
 import com.felece.todoapp.dto.FilterTodoDto;
 import com.felece.todoapp.dto.TodoDto;
 import com.felece.todoapp.entity.MyUserDetails;
@@ -59,5 +60,12 @@ public class TodosService {
         Date date1 = dto.getDate1();
         Date date2 = dto.getDate2();
         return todoRepository.findAllByDateBetween(date1, date2);}
+
+    public List<Todo> filterTodosByUserId(FilterTodoByUserDto dto){
+        Date date1 = dto.getDateStart();
+        Date date2 = dto.getDateEnd();
+        Long id = dto.getUserId();
+        return todoRepository.findTodosByDateBetweenAndUserId(date1, date2, id);
+    }
 
 }

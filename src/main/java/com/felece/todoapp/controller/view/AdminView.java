@@ -36,7 +36,7 @@ public class AdminView {
         return "login";
     }
 
-    private static List<String> rolesList;
+    private static final List<String> rolesList;
     static {
         rolesList = new ArrayList<>();
         rolesList.add("ADMIN");

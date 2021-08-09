@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
     private Long id;
-    private boolean active;
+    private final boolean active;
     private List<GrantedAuthority> authorities;
 
     public MyUserDetails(User user){

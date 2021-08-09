@@ -1,6 +1,7 @@
 package com.felece.todoapp.controller.rest;
 
 
+import com.felece.todoapp.dto.FilterTodoByUserDto;
 import com.felece.todoapp.dto.FilterTodoDto;
 import com.felece.todoapp.dto.TodoDto;
 import com.felece.todoapp.entity.Todo;
@@ -37,6 +38,11 @@ public class TodoController {
         return todos;
     }
 
+    @GetMapping("user/todos/filter")
+    public List<Todo> filterTodosById(@RequestBody FilterTodoByUserDto dto){
+        List<Todo> todos = todosService.filterTodosByUserId(dto);
+        return todos;
+    }
 
     @PostMapping("/admin/todos/addtodo")
     public Todo addTodoAdmin(@RequestBody TodoDto dto){

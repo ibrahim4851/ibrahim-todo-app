@@ -18,7 +18,7 @@ public class TodoView {
     @Autowired
     private TodosService todosService;
 
-    private static List<String> statuslist;
+    private static final List<String> statuslist;
     static {
         statuslist = new ArrayList<>();
         statuslist.add("TODO");
