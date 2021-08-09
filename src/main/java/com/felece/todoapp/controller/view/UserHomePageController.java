@@ -25,7 +25,7 @@ public class UserHomePageController {
         return "user";
     }
 
-    @PostMapping(value = "user/home/{userid}",consumes =  "application/json")
+    @PostMapping(value = "user/home/{userid}")
     @ResponseBody
     public List<Todo> filterTodos(@RequestBody FilterTodoByUserDto dto){
         List<Todo> todos = todosService.filterTodosByUserId(dto);

@@ -1,18 +1,40 @@
 $(document).ready(function (){
-    $('#alltodos').on('click', '#deletetodo' , function (event){
-        event.preventDefault()
-        var id = $(this).attr("data-code");
-        $.ajax("/user/deletetodo/"+id.toString(),
+    $('#filtertodo').submit(function (event){
+        event.preventDefault();
+
+        var filtertodo = {};
+        filtertodo["datestart"] = $('input[name=datestart]').val();
+        filtertodo["dateend"] = $('input[name=dateend]').val();
+
+        var dateobj = {
+            dateStart: filtertodo.datestart,
+            dateEnd: filtertodo.dateend
+        }
+
+        $.ajax("/admin/todos/filter",
             {
-                method: 'DELETE',
+                method: 'POST',
                 contentType: 'application/json',
-                success: function (){
-                    $('.todos').each(function(){
-                        $(id).remove();
+                data: JSON.stringify(dateobj),
+                success: function (data){
+                    $('#alltodos tbody').empty();
+                    $.each(data, function (index, data){
+                        console.log("date: "+data.date);
+                        var nonFormatDate = new Date(data.date);
+                        yr      = nonFormatDate.getFullYear(),
+                        month   = nonFormatDate.getMonth() < 10 ? '0' + nonFormatDate.getMonth() : nonFormatDate.getMonth(),
+                        day     = nonFormatDate.getDate()  < 10 ? '0' + nonFormatDate.getDate()  : nonFormatDate.getDate(),
+                        newDate = yr + '-' + month + '-' + day;
+                        var row = '<tr>' + '<td>' + data.id + '</td>' +
+                            '<td>' + data.description  + '</td> ' +
+                            '<td>' + data.todoStatus + '</td> ' +
+                            ' <td>data.userid </td> ' +
+                            ' <td>' + newDate + '</td>' +
+                             '</tr>';
+                        $('#alltodos').append(row);
                     });
-                    window.alert("User Deleted");
-                    location.reload();
                 }
             });
+
     });
 });

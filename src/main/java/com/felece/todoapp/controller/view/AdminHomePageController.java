@@ -1,5 +1,6 @@
 package com.felece.todoapp.controller.view;
 
+import com.felece.todoapp.dto.FilterTodoDto;
 import com.felece.todoapp.dto.UserDto;
 import com.felece.todoapp.entity.Todo;
 import com.felece.todoapp.entity.User;
@@ -34,6 +35,13 @@ public class AdminHomePageController {
         List<Todo> todos = todosService.findAll();
         model.addAttribute("todos", todos);
         return "alltodos";
+    }
+
+    @PostMapping("admin/todos/filter")
+    @ResponseBody
+    public List<Todo> filterTodos(@RequestBody FilterTodoDto dto){
+        List<Todo> todos = todosService.filterTodos(dto);
+        return todos;
     }
 
     @PutMapping("admin/home/edituser")

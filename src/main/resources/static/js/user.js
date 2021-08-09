@@ -57,20 +57,13 @@ $(document).ready(function (){
                 contentType: 'application/json',
                 data: JSON.stringify(dateobj),
                 success: function (data){
-                    var response = data.response;
-                    console.log(dateobj)
-                    console.log("data response: "+ response);
                     $('#todos tbody').empty();
                     $.each(data, function (index, data){
-                        console.log("date: "+ data.date);
-                        console.log("userid: "+ data.userId);
-                        console.log("status: "+ data.todoStatus);
-                        console.log("description: "+ data.description);
                         var nonFormatDate = new Date(data.date);
                         yr      = nonFormatDate.getFullYear(),
-                            month   = nonFormatDate.getMonth() < 10 ? '0' + nonFormatDate.getMonth() : nonFormatDate.getMonth(),
-                            day     = nonFormatDate.getDate()  < 10 ? '0' + nonFormatDate.getDate()  : nonFormatDate.getDate(),
-                            newDate = yr + '-' + month + '-' + day;
+                        month   = nonFormatDate.getMonth() < 10 ? '0' + nonFormatDate.getMonth() : nonFormatDate.getMonth(),
+                        day     = nonFormatDate.getDate()  < 10 ? '0' + nonFormatDate.getDate()  : nonFormatDate.getDate(),
+                        newDate = yr + '-' + month + '-' + day;
                         var value = '<tr>' + '<td>' + data.id + '</td>' + '<td>' + data.description  + '</td> <td>' + data.todoStatus + '</td> <td>' + newDate + '</td>' +
                             '<td>'+
                             '<a class="btn btn-danger" type="button" id="deletetodo">Delete</a>'+

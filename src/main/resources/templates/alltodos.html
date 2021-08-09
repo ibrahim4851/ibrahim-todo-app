@@ -9,6 +9,22 @@
           crossorigin="anonymous">
 </head>
 <body>
+
+<form style="margin-top: 15px; margin-left: 20px;    display: inline-block; text-align: center;" id="filtertodo">
+    <h1>Filter Todos By Date</h1>
+    <table>
+        <tr>
+            <td>Start Date</td>
+            <td><input type="date" id="datestart" name="datestart"></td>
+        </tr>
+        <tr>
+            <td>End Date</td>
+            <td><input type="date" id="dateend" name="dateend"></td>
+        </tr>
+    </table>
+    <button class="btn btn-warning" type="submit" id="filter">Filter</button>
+</form>
+
 <div class="container">
     <div class="row">
         <h1>Todos</h1>
@@ -21,7 +37,6 @@
                 <th>Status</th>
                 <th>UserID</th>
                 <th>Date</th>
-                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -31,8 +46,6 @@
                 <td th:text="${todo.todoStatus}"></td>
                 <td th:text="${todo.userId}"></td>
                 <td th:text="${todo.date}"></td>
-                <td><a class="btn btn-danger" type="button" data-th-data-code='${todo.id}'
-                       id="deletetodo">Delete</a></td>
             </tr>
             </tbody>
         </table>
