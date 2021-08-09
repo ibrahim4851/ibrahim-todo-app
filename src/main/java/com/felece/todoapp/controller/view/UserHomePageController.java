@@ -1,5 +1,6 @@
 package com.felece.todoapp.controller.view;
 
+import com.felece.todoapp.dto.FilterTodoByUserDto;
 import com.felece.todoapp.dto.TodoDto;
 import com.felece.todoapp.entity.Todo;
 import com.felece.todoapp.service.TodosService;
@@ -22,6 +23,13 @@ public class UserHomePageController {
         List<Todo> todos = todosService.findByUserId(id);
         model.addAttribute("todos", todos);
         return "user";
+    }
+
+    @PostMapping(value = "user/home/{userid}",consumes =  "application/json")
+    @ResponseBody
+    public List<Todo> filterTodos(@RequestBody FilterTodoByUserDto dto){
+        List<Todo> todos = todosService.filterTodosByUserId(dto);
+        return todos;
     }
 
     @PostMapping("user/home/addtodo")

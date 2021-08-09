@@ -62,9 +62,17 @@ public class TodosService {
         return todoRepository.findAllByDateBetween(date1, date2);}
 
     public List<Todo> filterTodosByUserId(FilterTodoByUserDto dto){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails customUser = (MyUserDetails) authentication.getPrincipal();
+        Long userId = customUser.getId();
+
         Date date1 = dto.getDateStart();
         Date date2 = dto.getDateEnd();
-        Long id = dto.getUserId();
+        Long id = userId;
+        System.out.println("id value: "+id.toString());
+        System.out.println("date1 value: "+date1.toString());
+        System.out.println("date2 value: "+date2.toString());
         return todoRepository.findTodosByDateBetweenAndUserId(date1, date2, id);
     }
 

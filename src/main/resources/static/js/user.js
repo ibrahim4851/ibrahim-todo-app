@@ -36,10 +36,50 @@ $(document).ready(function (){
             });
     });
 
-    $('#addtodo').on('click', '#filter', function (event){
-        window.alert("clicked");
-        $.ajax("")
-        $('#todos').remove();
+    $('#filtertodo').submit(function (event){
+        event.preventDefault();
+
+        var filtertodo = {};
+        filtertodo["datestart"] = $('input[name=datestart]').val();
+        filtertodo["dateend"] = $('input[name=dateend]').val();
+
+        var dateobj = {
+            dateStart: filtertodo.datestart,
+            dateEnd: filtertodo.dateend
+        }
+
+        var url = $(location).attr('pathname');
+        url.split("/");
+        var id = url[url.length - 1];
+        $.ajax("/user/home/"+id.toString(),
+            {
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(dateobj),
+                success: function (data){
+                    var response = data.response;
+                    console.log(dateobj)
+                    console.log("data response: "+ response);
+                    $('#todos tbody').empty();
+                    $.each(data, function (index, data){
+                        console.log("date: "+ data.date);
+                        console.log("userid: "+ data.userId);
+                        console.log("status: "+ data.todoStatus);
+                        console.log("description: "+ data.description);
+                        var nonFormatDate = new Date(data.date);
+                        yr      = nonFormatDate.getFullYear(),
+                            month   = nonFormatDate.getMonth() < 10 ? '0' + nonFormatDate.getMonth() : nonFormatDate.getMonth(),
+                            day     = nonFormatDate.getDate()  < 10 ? '0' + nonFormatDate.getDate()  : nonFormatDate.getDate(),
+                            newDate = yr + '-' + month + '-' + day;
+                        var value = '<tr>' + '<td>' + data.id + '</td>' + '<td>' + data.description  + '</td> <td>' + data.todoStatus + '</td> <td>' + newDate + '</td>' +
+                            '<td>'+
+                            '<a class="btn btn-danger" type="button" id="deletetodo">Delete</a>'+
+                            '<button class="btn btn-success" type="button" id="edittodo">Edit</button>'+
+                            '</td>'+ '</tr>';
+                        $('#todos').append(value);
+                    });
+                }
+            });
     });
 
     $('#todos').on('click', '#deletetodo', function (event){

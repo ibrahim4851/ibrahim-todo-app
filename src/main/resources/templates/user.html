@@ -18,7 +18,7 @@
         </div>
     </ul>
 </div>
-<form style="margin-top: 15px" id="addtodo">
+<form style="margin-top: 15px; display: inline-block;" id="addtodo">
     <h1>Add a Todo</h1>
     <table>
         <tr>
@@ -39,41 +39,57 @@
         </tr>
     </table>
     <input type="submit" value="Save"/>
-    <button class="btn btn-danger" id="filter">Logout</button>
-
-
-    <div class="container">
-        <div class="row">
-
-            <h1>Todos</h1>
-
-            <table class="table" id="todos">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="todo : ${todos}">
-                    <td th:text="${todo.id}"></td>
-                    <td th:text="${todo.description}"></td>
-                    <td th:text="${todo.todoStatus}"></td>
-                    <td th:text="${todo.date}"></td>
-                    <td>
-                        <a class="btn btn-danger" data-th-data-code='${todo.id}' type="button" id="deletetodo">Delete</a>
-                        <button class="btn btn-success" data-th-data-code='${todo.id}' type="button" id="edittodo">Edit</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div>
 </form>
+
+<form style="margin-top: 15px; margin-left: 20px;    display: inline-block; text-align: center;" id="filtertodo">
+    <h1>Filter Todos By Date</h1>
+    <table>
+        <tr>
+            <td>Start Date</td>
+            <td><input type="date" id="datestart" name="datestart"></td>
+        </tr>
+        <tr>
+            <td>End Date</td>
+            <td><input type="date" id="dateend" name="dateend"></td>
+        </tr>
+    </table>
+    <button class="btn btn-warning" type="submit" id="filter">Filter</button>
+</form>
+
+
+<div class="container">
+    <div class="row">
+
+        <h1>Todos</h1>
+
+        <table class="table" id="todos">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.description}"></td>
+                <td th:text="${todo.todoStatus}"></td>
+                <td th:text="${todo.date}"></td>
+                <td>
+                    <a class="btn btn-danger" data-th-data-code='${todo.id}' type="button" id="deletetodo">Delete</a>
+                    <button class="btn btn-success" data-th-data-code='${todo.id}' type="button" id="edittodo">Edit
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 </body>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/user.js"></script>
