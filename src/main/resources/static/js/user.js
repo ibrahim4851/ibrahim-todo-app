@@ -110,6 +110,7 @@ $(document).ready(function (){
                 data: JSON.stringify(obj),
                 success: function (data){
                     $("."+obj.id).text("DONE");
+                    console.log("name: "+$(this).name);
                 }
             });
     });
@@ -117,7 +118,19 @@ $(document).ready(function (){
     $('#todos').on('click', '#delaytodo', function (event){
         event.preventDefault();
         var id =$(this).attr("data-code");
-        window.alert(id+"delay");
+        var obj = {
+            id: id,
+            status: 'DELAY'
+        }
+        $.ajax("/user/home/updatetodo",
+            {
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                success: function (data){
+                    $("."+obj.id).text("DELAY");
+                }
+            });
     });
 
 });
