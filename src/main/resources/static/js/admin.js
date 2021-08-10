@@ -27,10 +27,13 @@ $(document).ready(function (){
                 success: function (data){
                     console.log(this.data);
                     $("#adduser")[0].reset();
-                    var value = '<tr>' + '<td>' + data.id + '</td>' + '<td>' + data.username  + '</td> <td>' + data.role + '</td> <td>' + data.password + '</td>'
+                    var value = '<tr>' + '<td>' + data.id + '</td>'
+                        + '<td>' + '<input type="text" value="' + data.username +'">'+ '</td>' +
+                        ' <td>' + '<input type="text" value="' +data.role + '">' + '</td>' +
+                        ' <td>' + '<input type="text" value="' + data.password + '">' + '</td>'
                         + '<td>'+
-                            '<button class="btn btn-danger" type="button" id="deleteuser">Delete</button>'+
-                            '<button class="btn btn-success" type="button" id="edituser">Edit</button>'+
+                            '<button class="btn btn-danger" type="button" data-code="' + data.id + '" id="deleteuser">Delete</button>'+
+                            '<button class="btn btn-success" type="button" data-code="' + data.id + '" id="edituser">Edit</button>'+
                         '</td>' + '</tr>';
 
                     $('#users').append(value);
@@ -59,32 +62,32 @@ $(document).ready(function (){
         event.preventDefault()
         var id = $(this).attr("data-code");
         var row = $(this).closest("tr")
-        var name = row.find("td");
-        //console.log(name);
-        var edituserform = {};
-        edituserform["username"] = $("#editusername").val();
-        edituserform["password"] = $("#editpassword").val();
-        edituserform["role"] = $('#editrole').val();
+        var name = row.find("td:nth-child(2) input").val();
+        var role = row.find("td:nth-child(3) input").val();
+        var password = row.find("td:nth-child(4) input").val();
+        console.log("idvalue: ", id);
+        console.log("namevalue: " + name);
+        console.log("password: " + password);
+        console.log("role: " + role);
 
-        if (edituserform.attr("data-code") == id){
-            console.log("basarili")
+        var obj = {
+            username: name,
+            password: password,
+            role: role
         }
 
-        var editobj = {
-            username: edituserform.username,
-            password: edituserform.password,
-            role: edituserform.role
-        }
-
-        /*$.ajax("/api/admin/updateuser/"+id,
+        $.ajax("/admin/home/edituser/"+id,
             {
                 method: 'PUT',
                 contentType: 'application/json',
-                data: JSON.stringify(editobj),
-                success: function (){
-                    location.reload()
+                data: JSON.stringify(obj),
+                success: function (data){
+                    row.find("td:nth-child(2) input").text(obj.username);
+                    row.find("td:nth-child(3) input").text(obj.role);
+                    row.find("td:nth-child(4) input").text(obj.password);
                 }
-            })*/
+            })
+
         window.alert("edituser");
     });
 });

@@ -63,9 +63,9 @@
                 <tr th:each="user : ${users}">
 
                         <td th:text="${user.id}"></td>
-                        <td><input type="text" th:value="${user.username}" id="editusername" data-th-data-code='${user.id}'></td>
-                        <td><input type="text" th:value="${user.role}" id="editrole" data-th-data-code='${user.id}'></td>
-                        <td><input type="text" th:value="${user.password}" id="editpassword" data-th-data-code='${user.id}'></td>
+                        <td><input type="text" th:value="${user.username}" ></td>
+                        <td><input type="text" th:value="${user.role}"></td>
+                        <td><input type="text" th:value="${user.password}" ></td>
                         <td>
                             <a class="btn btn-danger" type="button" data-th-data-code='${user.id}'
                                id="deleteuser">Delete</a>
