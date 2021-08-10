@@ -59,7 +59,6 @@
 
 <div class="container">
     <div class="row">
-
         <h1>Todos</h1>
 
         <table class="table" id="todos">
@@ -76,12 +75,12 @@
             <tr th:each="todo : ${todos}">
                 <td th:text="${todo.id}"></td>
                 <td th:text="${todo.description}"></td>
-                <td th:text="${todo.todoStatus}"></td>
+                <td class="" th:classappend="${todo.id}"  th:text="${todo.todoStatus}"></td>
                 <td th:text="${todo.date}"></td>
                 <td>
-                    <a class="btn btn-danger" data-th-data-code='${todo.id}' type="button" id="deletetodo">Delete</a>
-                    <button class="btn btn-success" data-th-data-code='${todo.id}' type="button" id="edittodo">Edit
-                    </button>
+                    <a class="btn btn-danger" data-th-data-code='${todo.id}' type="button" id="deletetodo">DELETE</a>
+                    <button class="btn btn-success" data-th-data-code='${todo.id}' type="button" id="donetodo">DONE</button>
+                    <button class="btn btn-primary" data-th-data-code='${todo.id}' type="button" id="delaytodo">DELAY</button>
                 </td>
             </tr>
             </tbody>

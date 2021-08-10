@@ -2,6 +2,7 @@ package com.felece.todoapp.controller.view;
 
 import com.felece.todoapp.dto.FilterTodoByUserDto;
 import com.felece.todoapp.dto.TodoDto;
+import com.felece.todoapp.dto.UpdateUserDto;
 import com.felece.todoapp.entity.Todo;
 import com.felece.todoapp.service.TodosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,13 @@ public class UserHomePageController {
     @ResponseBody
     public Todo addTodoUser(@RequestBody TodoDto dto){
         Todo todo = todosService.addTodo(dto);
+        return todo;
+    }
+
+    @PutMapping(value = "user/home/updatetodo", produces = "application/json")
+    @ResponseBody
+    public Todo updateTodo(@RequestBody UpdateUserDto dto){
+        Todo todo = todosService.update(dto.getId(), dto.getStatus());
         return todo;
     }
 

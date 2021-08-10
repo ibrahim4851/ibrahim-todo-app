@@ -26,10 +26,13 @@ $(document).ready(function (){
                     day     = nonFormatDate.getDate()  < 10 ? '0' + nonFormatDate.getDate()  : nonFormatDate.getDate(),
                     newDate = yr + '-' + month + '-' + day;
 
-                    var value = '<tr>' + '<td>' + data.id + '</td>' + '<td>' + data.description  + '</td> <td>' + data.todoStatus + '</td> <td>' + newDate + '</td>' +
+                    var value = '<tr>' + '<td>' + data.id + '</td>' + '<td>' + data.description  + '</td> ' +
+                        '<td class="'+ data.id +'"' + '>' + data.todoStatus + '</td>' +
+                        ' <td>' + newDate + '</td>' +
                         '<td>'+
-                            '<a class="btn btn-danger" type="button" id="deletetodo">Delete</a>'+
-                            '<button class="btn btn-success" type="button" id="edittodo">Edit</button>'+
+                        '<a class="btn btn-danger" data-code='+ data.id+ ' type="button" id="deletetodo">DELETE</a>'+
+                        '<button class="btn btn-success" data-code=' + data.id + ' type="button" id="donetodo">DONE</button>'+
+                        '<button class="btn btn-primary" data-code=' + data.id + ' type="button" id="delaytodo">DELAY</button>'+
                         '</td>'+ '</tr>';
                     $('#todos').append(value);
                 }
@@ -92,10 +95,29 @@ $(document).ready(function (){
         });
     });
 
-    $('#todos').on('click', '#edittodo', function (event){
+    $('#todos').on('click', '#donetodo', function (event){
         event.preventDefault();
         var id =$(this).attr("data-code");
-        window.alert(id);
+        var obj = {
+            id: id,
+            status: 'DONE'
+        }
+        console.error(obj)
+        $.ajax("/user/home/updatetodo",
+            {
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(obj),
+                success: function (data){
+                    $("."+obj.id).text("DONE");
+                }
+            });
+    });
+
+    $('#todos').on('click', '#delaytodo', function (event){
+        event.preventDefault();
+        var id =$(this).attr("data-code");
+        window.alert(id+"delay");
     });
 
 });
