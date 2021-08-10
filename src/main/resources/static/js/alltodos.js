@@ -28,7 +28,7 @@ $(document).ready(function (){
                         var row = '<tr>' + '<td>' + data.id + '</td>' +
                             '<td>' + data.description  + '</td> ' +
                             '<td>' + data.todoStatus + '</td> ' +
-                            ' <td>data.userid </td> ' +
+                            ' <td>' +data.userId+ '</td> ' +
                             ' <td>' + newDate + '</td>' +
                              '</tr>';
                         $('#alltodos').append(row);
