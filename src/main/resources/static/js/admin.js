@@ -65,28 +65,33 @@ $(document).ready(function (){
         var name = row.find("td:nth-child(2) input").val();
         var role = row.find("td:nth-child(3) input").val();
         var password = row.find("td:nth-child(4) input").val();
-        console.log("idvalue: ", id);
-        console.log("namevalue: " + name);
-        console.log("password: " + password);
-        console.log("role: " + role);
-
-        var obj = {
-            username: name,
-            password: password,
-            role: role
+        if (role || name || password == ""){
+            window.alert("Fields must not be null");
         }
+        else {
+            console.log("idvalue: ", id);
+            console.log("namevalue: " + name);
+            console.log("password: " + password);
+            console.log("role: " + role);
 
-        $.ajax("/admin/home/edituser/"+id,
-            {
-                method: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify(obj),
-                success: function (data){
-                    row.find("td:nth-child(2) input").text(obj.username);
-                    row.find("td:nth-child(3) input").text(obj.role);
-                    row.find("td:nth-child(4) input").text(obj.password);
-                    window.alert("Changes Saved");
-                }
-            });
+            var obj = {
+                username: name,
+                password: password,
+                role: role
+            }
+
+            $.ajax("/admin/home/edituser/" + id,
+                {
+                    method: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify(obj),
+                    success: function (data) {
+                        row.find("td:nth-child(2) input").text(obj.username);
+                        row.find("td:nth-child(3) input").text(obj.role);
+                        row.find("td:nth-child(4) input").text(obj.password);
+                        window.alert("Changes Saved");
+                    }
+                });
+        }
     });
 });

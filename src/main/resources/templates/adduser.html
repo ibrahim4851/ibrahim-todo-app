@@ -27,11 +27,11 @@
     <table>
         <tr>
             <td>Username</td>
-            <td><input type="text" id="username" name="username"/></td>
+            <td><input type="text" id="username" name="username" required/></td>
         </tr>
         <tr>
             <td>Password</td>
-            <td><input type="text" id="password" name="password"/></td>
+            <td><input type="text" id="password" name="password" required/></td>
         </tr>
         <tr>
             <td>Role</td>
@@ -63,9 +63,9 @@
                 <tr th:each="user : ${users}">
 
                         <td th:text="${user.id}"></td>
-                        <td><input type="text" th:value="${user.username}" ></td>
-                        <td><input type="text" th:value="${user.role}"></td>
-                        <td><input type="text" th:value="${user.password}" ></td>
+                        <td><input type="text" th:value="${user.username}" required ></td>
+                        <td><input type="text" th:value="${user.role}" required></td>
+                        <td><input type="text" th:value="${user.password}" required></td>
                         <td>
                             <a class="btn btn-danger" type="button" data-th-data-code='${user.id}'
                                id="deleteuser">Delete</a>
