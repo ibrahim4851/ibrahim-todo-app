@@ -65,7 +65,7 @@ $(document).ready(function (){
         var name = row.find("td:nth-child(2) input").val();
         var role = row.find("td:nth-child(3) input").val();
         var password = row.find("td:nth-child(4) input").val();
-        if (role || name || password == ""){
+        if (role==="" || name==="" || password===""){
             window.alert("Fields must not be null");
         }
         else {
