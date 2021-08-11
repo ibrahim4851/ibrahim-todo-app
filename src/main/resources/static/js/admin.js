@@ -85,9 +85,8 @@ $(document).ready(function (){
                     row.find("td:nth-child(2) input").text(obj.username);
                     row.find("td:nth-child(3) input").text(obj.role);
                     row.find("td:nth-child(4) input").text(obj.password);
+                    window.alert("Changes Saved");
                 }
-            })
-
-        window.alert("edituser");
+            });
     });
 });
