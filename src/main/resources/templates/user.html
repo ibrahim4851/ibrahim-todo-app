@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Home Page</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div style="background-color: #4e555b">
+    <ul style="margin-bottom: 50px; background-color: #4e555b">
+        <div style="float: right; margin-right: 30px">
+            <form class="form-signin" method="get" action="/logout">
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
+        </div>
+    </ul>
+</div>
+<form style="margin-top: 15px; display: inline-block;" id="addtodo">
+    <h1>Add a Todo</h1>
+    <table>
+        <tr>
+            <td>Description</td>
+            <td><input type="text" id="description" name="description" required/></td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td><input type="date" id="date" name="date" required></td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td><select name="todoStatus" id="todoStatus">
+                <option value="todo" id="todo">TODO</option>
+                <option value="done" id="done">DONE</option>
+                <option value="delay" id="delay">DELAY</option>
+            </select></td>
+        </tr>
+    </table>
+    <input type="submit" value="Save"/>
+</form>
+
+<form style="margin-top: 15px; margin-left: 20px;    display: inline-block; text-align: center;" id="filtertodo">
+    <h1>Filter Todos By Date</h1>
+    <table>
+        <tr>
+            <td>Start Date</td>
+            <td><input type="date" id="datestart" name="datestart"></td>
+        </tr>
+        <tr>
+            <td>End Date</td>
+            <td><input type="date" id="dateend" name="dateend"></td>
+        </tr>
+    </table>
+    <button class="btn btn-warning" type="submit" id="filter">Filter</button>
+</form>
+
+
+<div class="container">
+    <div class="row">
+        <h1>Todos</h1>
+
+        <table class="table" id="todos">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.description}"></td>
+                <td class="" th:classappend="${todo.id}"  th:text="${todo.todoStatus}"></td>
+                <td th:text="${todo.date}"></td>
+                <td>
+                    <a class="btn btn-danger" data-th-data-code='${todo.id}' type="button" id="deletetodo">DELETE</a>
+                    <button class="btn btn-success" data-th-data-code='${todo.id}' type="button" id="donetodo">DONE</button>
+                    <button class="btn btn-primary" data-th-data-code='${todo.id}' type="button" id="delaytodo">DELAY</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<form style="margin-top: 15px; margin-left: 20px;    display: inline-block; text-align: center;" id="filtertodo">
+    <h1>Filter Todos By Date</h1>
+    <table>
+        <tr>
+            <td>Start Date</td>
+            <td><input type="date" id="datestart" name="datestart"></td>
+        </tr>
+        <tr>
+            <td>End Date</td>
+            <td><input type="date" id="dateend" name="dateend"></td>
+        </tr>
+    </table>
+    <button class="btn btn-warning" type="submit" id="filter">Filter</button>
+</form>
+
+<div class="container">
+    <div class="row">
+        <h1>Todos</h1>
+
+        <table class="table" id="alltodos">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>UserID</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.id}"></td>
+                <td th:text="${todo.description}"></td>
+                <td th:text="${todo.todoStatus}"></td>
+                <td th:text="${todo.userId}"></td>
+                <td th:text="${todo.date}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/alltodos.js"></script>
+</html>
